@@ -19,8 +19,7 @@ for fileNames in fileNames:
 # This code loops through each row and then each column in that row allowing you to view the contents of each cell.
 for i in numFiles:
     with open(os.path.join(pathName,i),newline='') as file:
-    file = open(os.path.join(pathName, i), "rU")
-    csv_reader = csv.reader(file, delimiter=',')
+        csv_reader = csv.reader(file, delimiter=',')
 # the below statement will skip the first row
     next(csv_reader)
     for row in csv_reader:
