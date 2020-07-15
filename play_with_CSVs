@@ -2,9 +2,12 @@
 
 import os
 import csv
+# subprocess to do ping test
+import subprocess
 
 #some csv rules :
-# Insted of <for column in file_name:> use <for row in file_name:> because reader iterates through the rows, not the columns to my understanding.
+#Instead of <for column in file_name:> use <for row in file_name:> because reader iterates through the rows, 
+#not the columns to my understanding???
 
 #The method os.getcwd() in Python returns the current working directory of a process.
 pathName = os.getcwd()
@@ -13,16 +16,32 @@ numFiles = []
 #If we don't specify any directory, then list of files and directories in the current working directory will be returned.
 fileNames = os.listdir(pathName)
 for fileNames in fileNames:
-    if fileNames.endswith(".csv"):
-        numFiles.append(fileNames)
-        
-# This code loops through each row and then each column in that row allowing you to view the contents of each cell.
+	if fileNames.endswith(".csv"):
+		numFiles.append(fileNames)
+## START print rows and columns in some format##
+## This code loops through each row refering to column name as <csv.DictReader> is used; normal <csv.reader>  changes csv to list of rows
+##DictReader : Creates an object which operates like a regular reader but maps the information read into a dict whose keys are given by the optional fieldnames parameter.
+##If the fieldnames parameter is omitted, the values in the first row of the csvfile will be used as the fieldnames.
+#for i in numFiles:
+#	with open(os.path.join(pathName,i),newline='') as csv_file:
+#		csv_reader=csv.DictReader(csv_file, delimiter=',', lineterminator='\n')
+#		for row in csv_reader:
+#			print('portCheck device {} {} '.format(row['router_A'],row['port_A']))
+## END print rows and columns in some format##
+
+##START If you want to do ping test in LINUX##
+import subprocess
+
+def ping(router):
+	try:
+		subprocess.check_output(["ping", "-c", "1", router])
+		print('success')
+	except subprocess.CalledProcessError:
+		print('fail')
+		
 for i in numFiles:
-    with open(os.path.join(pathName,i),newline='') as file:
-        csv_reader = csv.reader(file, delimiter=',')
-# the below statement will skip the first row
-    next(csv_reader)
-    for row in csv_reader:
-        for column in row:
-            print(column['router_A')
-           
+	with open(os.path.join(pathName,i),newline='') as csv_file:
+		csv_reader=csv.DictReader(csv_file, delimiter=',', lineterminator='\n')
+		for row in csv_reader:
+			ping(row['router_A')
+##END If you want to do ping test in LINUX##
