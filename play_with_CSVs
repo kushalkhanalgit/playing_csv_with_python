@@ -43,5 +43,5 @@ for i in numFiles:
 	with open(os.path.join(pathName,i),newline='') as csv_file:
 		csv_reader=csv.DictReader(csv_file, delimiter=',', lineterminator='\n')
 		for row in csv_reader:
-			ping(row['router_A')
+			ping(row['router_A'])
 ##END If you want to do ping test in LINUX##
