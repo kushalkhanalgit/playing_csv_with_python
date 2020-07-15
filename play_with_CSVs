@@ -2,8 +2,6 @@
 
 import os
 import csv
-# subprocess to do ping test
-import subprocess
 
 #some csv rules :
 #Instead of <for column in file_name:> use <for row in file_name:> because reader iterates through the rows, 
@@ -30,6 +28,8 @@ for fileNames in fileNames:
 ## END print rows and columns in some format##
 
 ##START If you want to do ping test in LINUX##
+
+# subprocess to do ping test
 import subprocess
 
 def ping(router):
