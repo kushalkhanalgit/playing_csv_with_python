@@ -45,3 +45,18 @@ for i in numFiles:
 		for row in csv_reader:
 			ping(row['router_A'])
 ##END If you want to do ping test in LINUX##
+
+##snippet to concatenate csv files, with matching header printing only one header ##
+
+#create list of files you want to merge
+#    regional_files.append("span_id_with_fabric_{}.csv".format(region))
+   
+#combine all files in the list
+#df_cph_list =[]
+#col_names = ["","client_path_name","a_end_client_port","state","fabric","pp_id"]
+#for regional_file in regional_files:
+#    df_cph = pd.read_csv("/tmp/{}".format(regional_file),header = 0)
+#    df_cph_list.append(df_cph)
+#    concat_cph = pd.concat(df_cph_list,axis = 0)
+#    concat_cph.columns = col_names
+#    concat_cph.to_csv("/tmp/merged_input_region_cph.csv",index = None)
